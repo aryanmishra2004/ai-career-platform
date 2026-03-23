@@ -17,7 +17,7 @@ const clientDistPath = path.join(__dirname, "..", "client", "dist");
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || true,
+    origin: "*",
   })
 );
 app.use(express.json({ limit: "5mb" }));
@@ -25,6 +25,10 @@ app.use(express.json({ limit: "5mb" }));
 app.use("/api/career", careerRoute);
 app.use("/api/chatbot", chatbotRoute);
 app.use("/api/roadmap", roadmapRoute);
+
+app.get("/", (req, res) => {
+  res.send("API is running 🚀");
+});
 
 app.use(express.static(clientDistPath));
 

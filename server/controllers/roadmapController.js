@@ -25,6 +25,6 @@ Return STRICT JSON only:
     res.json(result);
   } catch (error) {
     console.error("Roadmap detail error:", error);
-    res.status(500).json(createRoadmapDetailFallback(req.body.step));
+    res.json(createRoadmapDetailFallback(req.body.step));
   }
 };

@@ -37,6 +37,6 @@ Respond with practical guidance, encouragement, and concrete next steps.`;
     res.json({ reply });
   } catch (error) {
     console.error("Chatbot error:", error);
-    res.status(500).json({ reply: createMentorFallback(req.body.message) });
+    res.json({ reply: createMentorFallback(req.body.message) });
   }
 };

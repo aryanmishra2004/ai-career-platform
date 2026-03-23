@@ -92,7 +92,7 @@ export const getCareerSuggestion = async (req, res) => {
     res.json(result);
   } catch (error) {
     console.error("Career report error:", error);
-    res.status(500).json(createCareerReportFallback(req.body));
+    res.json(createCareerReportFallback(req.body));
   }
 };
 
@@ -127,7 +127,7 @@ Return STRICT JSON only:
     res.json(result);
   } catch (error) {
     console.error("Career comparison error:", error);
-    res.status(500).json(createComparisonFallback(req.body.careerOne, req.body.careerTwo));
+    res.json(createComparisonFallback(req.body.careerOne, req.body.careerTwo));
   }
 };
 
@@ -150,7 +150,7 @@ Return STRICT JSON only:
     res.json(result);
   } catch (error) {
     console.error("Skill gap error:", error);
-    res.status(500).json(createSkillGapFallback(req.body.targetCareer, req.body.currentSkills));
+    res.json(createSkillGapFallback(req.body.targetCareer, req.body.currentSkills));
   }
 };
 
@@ -174,7 +174,7 @@ Return STRICT JSON only:
     res.json(result);
   } catch (error) {
     console.error("Mini project error:", error);
-    res.status(500).json(createProjectsFallback(req.body.career));
+    res.json(createProjectsFallback(req.body.career));
   }
 };
 
@@ -193,7 +193,7 @@ Return STRICT JSON only:
     res.json(result);
   } catch (error) {
     console.error("Daily plan error:", error);
-    res.status(500).json(createDailyPlanFallback(req.body.career));
+    res.json(createDailyPlanFallback(req.body.career));
   }
 };
 
@@ -214,7 +214,7 @@ Return STRICT JSON only:
     res.json(result);
   } catch (error) {
     console.error("Interview prep error:", error);
-    res.status(500).json(createInterviewFallback(req.body.career));
+    res.json(createInterviewFallback(req.body.career));
   }
 };
 
@@ -245,6 +245,6 @@ Return STRICT JSON only:
     res.json(result);
   } catch (error) {
     console.error("Resume analysis error:", error);
-    res.status(500).json(createResumeFallback(req.body.targetCareer));
+    res.json(createResumeFallback(req.body.targetCareer));
   }
 };

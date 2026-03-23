@@ -26,7 +26,7 @@ app.use("/api/career", careerRoute);
 app.use("/api/chatbot", chatbotRoute);
 app.use("/api/roadmap", roadmapRoute);
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.send("API is running 🚀");
 });
 

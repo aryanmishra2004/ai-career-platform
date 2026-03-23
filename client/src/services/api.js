@@ -2,8 +2,10 @@ import axios from "axios";
 
 export const FRIENDLY_ERROR_MESSAGE = "Server busy. Please try again.";
 
+const API = "https://ai-career-platformm.onrender.com/api";
+
 const api = axios.create({
-  baseURL: "https://ai-career-platform.onrender.com",
+  baseURL: API,
 });
 
 api.interceptors.response.use(

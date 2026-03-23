@@ -1,4 +1,13 @@
-# AI Career Platform 🚀
+---
+title: AI Career Platform
+emoji: "🚀"
+colorFrom: blue
+colorTo: cyan
+sdk: docker
+app_port: 7860
+---
+
+# AI Career Platform
 
 ## Features
 - Career suggestion using AI
@@ -48,23 +57,11 @@ npm run build
 npm start
 ```
 
-Then open:
-```txt
-http://localhost:5000
-```
-
 ## Deploy
 
-### Frontend on Vercel
-1. Import the `client` folder into Vercel
-2. Set `VITE_API_URL=https://your-backend.onrender.com/api`
-3. Deploy and copy your Vercel URL
+### Frontend on Hugging Face Spaces
+This repository includes a Docker setup for Hugging Face Spaces. The Space builds the `client` app and serves the static output on port `7860`.
 
 ### Backend on Render
-1. Create a new Web Service from the `server` folder
-2. Set `GEMINI_API_KEY`, `HF_API_KEY`, `CLIENT_URL`, and optional `PORT`
-3. Start command: `npm start`
-4. Copy your Render API URL
-
-## Live Demo
-https://your-app.vercel.app
+Use your Render backend for API requests. In production the frontend points to:
+`https://ai-career-platformm.onrender.com/api`

@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: ai-career-platformm
+    runtime: node
+    buildCommand: npm run render-build
+    startCommand: npm start

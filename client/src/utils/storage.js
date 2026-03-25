@@ -32,7 +32,9 @@ export const copyToClipboard = async (text) => {
 export const getLeaderboardData = () => {
   try {
     const stored = JSON.parse(localStorage.getItem(APP_KEYS.leaderboard) || "[]");
-    return Array.isArray(stored) ? stored : [];
+    return Array.isArray(stored)
+      ? stored.filter((entry) => entry && typeof entry.name === "string" && entry.name.trim())
+      : [];
   } catch {
     return [];
   }
@@ -44,7 +46,10 @@ export const mergeLeaderboard = (entries, user, points) => {
     { name: "Siya", points: 120 },
     { name: "Kabir", points: 110 },
   ];
-  const merged = [...baseEntries, ...entries].filter(
+  const safeEntries = (entries || []).filter(
+    (entry) => entry && typeof entry.name === "string" && entry.name.trim()
+  );
+  const merged = [...baseEntries, ...safeEntries].filter(
     (entry, index, array) =>
       index === array.findIndex((item) => item.name.toLowerCase() === entry.name.toLowerCase())
   );

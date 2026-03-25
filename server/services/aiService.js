@@ -2,8 +2,8 @@ import axios from "axios";
 
 const GEMINI_URL =
   "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
-const HUGGING_FACE_URL =
-  "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.1";
+const HUGGING_FACE_URL = "https://router.huggingface.co/v1/chat/completions";
+const HUGGING_FACE_MODEL = "katanemo/Arch-Router-1.5B:hf-inference";
 
 const extractText = (response) =>
   response?.data?.candidates?.[0]?.content?.parts
@@ -14,11 +14,7 @@ const extractText = (response) =>
 const extractHuggingFaceText = (response) => {
   const data = response?.data;
 
-  if (Array.isArray(data)) {
-    return data?.[0]?.generated_text?.trim() || "";
-  }
-
-  return data?.generated_text?.trim() || "";
+  return data?.choices?.[0]?.message?.content?.trim() || "";
 };
 
 const cleanJsonText = (text) =>
@@ -55,15 +51,14 @@ const callHuggingFace = async (prompt) => {
     const response = await axios.post(
       HUGGING_FACE_URL,
       {
-        inputs: prompt,
-        parameters: {
-          max_new_tokens: 900,
-          return_full_text: false,
-        },
+        model: HUGGING_FACE_MODEL,
+        messages: [{ role: "user", content: prompt }],
+        max_tokens: 900,
       },
       {
         headers: {
           Authorization: `Bearer ${process.env.HF_API_KEY}`,
+          "Content-Type": "application/json",
         },
         timeout: 45000,
       }
